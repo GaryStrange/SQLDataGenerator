@@ -1,0 +1,8 @@
+﻿CREATE FUNCTION [dbo].[VirtualSequence]
+(
+	@nRows INT = 1000000
+)
+RETURNS TABLE AS RETURN
+(
+	SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) N FROM dbo.VirtualNums(@nRows)
+)
