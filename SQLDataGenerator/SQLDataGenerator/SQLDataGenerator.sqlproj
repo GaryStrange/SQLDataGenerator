@@ -98,6 +98,7 @@
     <Build Include="Table Types\GeneratedColumn.sql" />
     <Build Include="Dynamic SQL Functions\CrossApplyRandomIntFromJson.sql" />
     <Build Include="Core Functions\Punctuation.sql" />
+    <Build Include="Dynamic SQL Functions\CrossApplyMapper.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post Deploy\Script.PostDeployment1.sql" />

@@ -16,12 +16,7 @@ BEGIN
 	DECLARE @from_statement NVARCHAR(4000) = CONCAT( dbo.BaseObject(@hasSequence), '(', @nRows, ')')
 
 	DECLARE @join_statement NVARCHAR(4000) = '';
-	SELECT @join_statement += CONCAT([\n], CASE c.GenerationMethod
-							WHEN 'RandomInt' THEN [dbo].[CrossApplyRandomIntFromJson](ParameterData, ColumnSetAlias)
-							WHEN 0 THEN ''
-						END )
-	FROM @columns c
-	CROSS JOIN dbo.Punctuation
+	SET @join_statement = [dbo].[CrossApplyMapper](@columns)
 
 	SELECT @sql_statement = CONCAT(
 		N'SELECT'
