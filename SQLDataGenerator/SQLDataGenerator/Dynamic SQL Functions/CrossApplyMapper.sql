@@ -2,17 +2,15 @@
 (
 	@columns dbo.GeneratedColumns READONLY
 )
-RETURNS NVARCHAR(4000)
-BEGIN
-	RETURN (
-		SELECT
+RETURNS TABLE
+AS
+RETURN
+	SELECT
 			CONCAT(
 				[\n], CASE c.GenerationMethod
 							WHEN 'RandomInt' THEN [dbo].[CrossApplyRandomIntFromJson](ParameterData, ColumnSetAlias)
 							WHEN 0 THEN ''
 						END
-			)
+			) AS [statement_fragment]
 	FROM @columns c
 	CROSS JOIN dbo.Punctuation
-	)
-END

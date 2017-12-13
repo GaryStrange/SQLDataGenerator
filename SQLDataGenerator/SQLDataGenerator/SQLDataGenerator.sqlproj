@@ -93,15 +93,19 @@
     <Build Include="Core Functions\IntConst.sql" />
     <Build Include="Tables\GenerationMethods.sql" />
     <Build Include="Dynamic SQL Functions\BaseObject.sql" />
-    <Build Include="Procedures\CreateView.sql" />
+    <Build Include="Procedures\GenerateView.sql" />
     <Build Include="Dynamic SQL Functions\CrossApplyRandomInt.sql" />
     <Build Include="Table Types\GeneratedColumn.sql" />
     <Build Include="Dynamic SQL Functions\CrossApplyRandomIntFromJson.sql" />
-    <Build Include="Core Functions\Punctuation.sql" />
     <Build Include="Dynamic SQL Functions\CrossApplyMapper.sql" />
     <Build Include="Procedures\DropView.sql" />
+    <Build Include="Procedures\CreateView.sql" />
+    <Build Include="Views\Punctuation.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post Deploy\Script.PostDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SQLDataGenerator.refactorlog" />
   </ItemGroup>
 </Project>

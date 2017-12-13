@@ -1,32 +1,22 @@
 ﻿CREATE PROCEDURE [dbo].[CreateView]
-	@hasSequence BIT
-	,@columns dbo.GeneratedColumns readonly
-	,@nRows INT = 100
+	@view_name SYSNAME,
+	@body NVARCHAR(MAX),
+	@schema_name SYSNAME = 'dbo'
 AS
 BEGIN
 	SET NOCOUNT ON;
 
-	DECLARE @sql_statement NVARCHAR(4000)
+	DECLARE @sql_statement NVARCHAR(4000) = N'CREATE {2}VIEW {0}.{1}';
 
-	DECLARE @column_statement NVARCHAR(4000) = '';
-	SELECT @column_statement += CONCAT([\n], Comma, ColumnSetAlias, '.RandColumn AS ', ColumnName )
-	FROM @columns c
-	CROSS JOIN dbo.Punctuation
+	SET @sql_statement = REPLACE(@sql_statement, '{0}', @schema_name)
+	SET @sql_statement = REPLACE(@sql_statement, '{1}', @view_name)
 
-	DECLARE @from_statement NVARCHAR(4000) = CONCAT( dbo.BaseObject(@hasSequence), '(', @nRows, ')')
+	--TODO: Check server edition
+	SET @sql_statement = REPLACE(@sql_statement, '{2}', 'OR ALTER ')
 
-	DECLARE @join_statement NVARCHAR(4000) = '';
-	SET @join_statement = [dbo].[CrossApplyMapper](@columns)
-
-	SELECT @sql_statement = CONCAT(
-		N'SELECT'
-		,[\n], STUFF(@column_statement,1, LEN([\n] + Comma),'')
-		,[\n], N'FROM'
-		,[\n], @from_statement
-		,[\n], @join_statement
-		)
+	SELECT @sql_statement += [\n] + 'AS' + [\n] + @body
 	FROM dbo.Punctuation
+
 	PRINT @sql_statement
-	
-	EXEC(@sql_statement);
+	EXEC( @sql_statement )
 END

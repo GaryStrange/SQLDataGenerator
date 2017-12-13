@@ -3,4 +3,4 @@
 	
 	SELECT
 		',' Comma
-		,CHAR(10) + CHAR(13) [\n]
+		,CHAR(13) [\n]
