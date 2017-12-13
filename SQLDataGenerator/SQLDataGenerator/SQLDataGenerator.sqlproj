@@ -101,6 +101,8 @@
     <Build Include="Procedures\DropView.sql" />
     <Build Include="Procedures\CreateView.sql" />
     <Build Include="Views\Punctuation.sql" />
+    <Build Include="Dynamic SQL Functions\CrossApplyRandomElementFromCSV.sql" />
+    <Build Include="Dynamic SQL Functions\CrossApplyRandomElementFromCSVFromJson.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post Deploy\Script.PostDeployment1.sql" />
