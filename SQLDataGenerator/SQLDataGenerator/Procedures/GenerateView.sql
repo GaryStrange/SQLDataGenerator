@@ -9,7 +9,7 @@ BEGIN
 
 	DECLARE @sql_statement NVARCHAR(4000)
 
-	DECLARE @seed_statement NVARCHAR(4000) = '*'
+	DECLARE @seed_statement NVARCHAR(4000) = 'N'
 	SELECT @seed_statement += CONCAT( [\n], [Comma], c.SeedColumnName, ' = NEWID()' )
 	FROM @columns c
 	CROSS JOIN dbo.Punctuation
@@ -32,7 +32,7 @@ BEGIN
 
 	SELECT @sql_statement = CONCAT(
 		@cte_statement
-		,[\n], N'SELECT'
+		,[\n], N'SELECT N,'
 		,[\n], STUFF(@column_statement,1, LEN([\n] + [\t] + Comma), [\t])
 		,[\n], N'FROM baseData'
 		,[\n], @join_statement
