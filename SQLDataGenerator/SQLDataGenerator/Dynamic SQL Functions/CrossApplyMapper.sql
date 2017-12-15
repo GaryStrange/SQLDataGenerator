@@ -6,12 +6,12 @@ RETURNS TABLE
 AS
 RETURN
 	SELECT
-			CONCAT(
-				[\n], CASE c.GenerationMethod
-							WHEN 'RandomInt' THEN [dbo].[CrossApplyRandomIntFromJson](ParameterData, ColumnSetAlias)
-							WHEN 'RandomElementFromCSV' THEN [dbo].[CrossApplyRandomElementFromCSVFromJson](ParameterData, ColumnSetAlias)
-							WHEN 0 THEN ''
-						END
-			) AS [statement_fragment]
+		[statement_fragment] =			
+			CASE c.GenerationMethod
+				WHEN 'RandomInt' 
+				THEN [dbo].[CrossApplyRandomIntFromJson](c.ParameterData, c.ColumnSetAlias, c.SeedColumnName)
+				WHEN 'RandomElementFromCSV' 
+				THEN [dbo].[CrossApplyRandomElementFromCSVFromJson](ParameterData, c.ColumnSetAlias, c.SeedColumnName)
+				WHEN 0 THEN ''
+			END
 	FROM @columns c
-	CROSS JOIN dbo.Punctuation

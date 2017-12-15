@@ -2,11 +2,17 @@
 (
 	@minInt INT = 1
 	,@maxInt INT = 10
-	,@alias sysname = 'c1'
+	,@alias sysname
+	,@seedColumnName sysname
 )
 RETURNS NVARCHAR(4000)
 AS
 BEGIN
-	RETURN CONCAT('cross apply
-	dbo.RandomNumberColumn(', @minInt, ',', @maxInt, ', nGUID) ', @alias)
+	RETURN (
+		SELECT CONCAT('cross apply'
+		, [\n], [\t], 'dbo.RandomNumberColumn('
+		, CONCAT_WS( [comma], @minInt, @maxInt, @seedColumnName )
+		, ') ', @alias)
+		FROM dbo.Punctuation
+	)
 END
