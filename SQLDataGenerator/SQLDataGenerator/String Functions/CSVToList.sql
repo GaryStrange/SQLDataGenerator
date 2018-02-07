@@ -24,6 +24,6 @@ RETURNS TABLE AS RETURN
 	SELECT 
 		ROW_NUMBER() OVER (ORDER BY Idx) ElementId,
 		SUBSTRING(@CSV, idx, elementLength) Element,
-		idx, elementLength
+		idx--, elementLength
 	FROM IndexAndLength
 )

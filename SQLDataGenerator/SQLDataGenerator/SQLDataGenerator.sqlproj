@@ -104,6 +104,7 @@
     <Build Include="Dynamic SQL Functions\CrossApplyRandomElementFromCSV.sql" />
     <Build Include="Dynamic SQL Functions\CrossApplyRandomElementFromCSVFromJson.sql" />
     <Build Include="String Functions\QUOTENAME2.sql" />
+    <Build Include="Random Functions\RandomNormalDistFloatColumn.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Post Deploy\Script.PostDeployment1.sql" />
