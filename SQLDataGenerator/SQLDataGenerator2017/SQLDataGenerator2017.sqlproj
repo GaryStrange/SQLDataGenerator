@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>SQLDataGenerator</Name>
+    <Name>SQLDataGenerator2017</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{93462937-500e-478d-973b-997624a85131}</ProjectGuid>
+    <ProjectGuid>{81a955e9-1a50-4279-b7f5-432aac17e999}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>SQLDataGenerator</RootNamespace>
-    <AssemblyName>SQLDataGenerator</AssemblyName>
+    <RootNamespace>SQLDataGenerator2017</RootNamespace>
+    <AssemblyName>SQLDataGenerator2017</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -23,10 +23,6 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <IsEncryptionOn>True</IsEncryptionOn>
-    <CompatibilityMode>140</CompatibilityMode>
-    <QueryStoreDesiredState>ReadWrite</QueryStoreDesiredState>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -61,53 +57,21 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="Random Functions" />
-    <Folder Include="String Functions" />
-    <Folder Include="Core Functions" />
-    <Folder Include="Tables" />
-    <Folder Include="Post Deploy" />
-    <Folder Include="Dynamic SQL Functions" />
-    <Folder Include="Procedures" />
-    <Folder Include="Table Types" />
-    <Folder Include="Test Scripts" />
-    <Folder Include="Views" />
+    <Folder Include="Dynamic Functions" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SQLDataGenerator.publish.xml" />
-    <None Include="Post Deploy\GenerationMethodsData.sql" />
-    <None Include="Test Scripts\GeneratedColumnTest.sql" />
-    <None Include="SQLDataGenerator.local.publish.xml" />
+    <ProjectReference Include="..\SQLDataGenerator\SQLDataGenerator.sqlproj">
+      <Name>SQLDataGenerator</Name>
+      <Project>{93462937-500e-478d-973b-997624a85131}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Random Functions\RandomCharFromChars.sql" />
-    <Build Include="Random Functions\RandomDateColumn.sql" />
-    <Build Include="Random Functions\RandomDateTimeColumn.sql" />
-    <Build Include="Random Functions\RandomElementFromCSV.sql" />
-    <Build Include="Random Functions\RandomFloatColumn.sql" />
-    <Build Include="Random Functions\RandomIndexFromCSV.sql" />
-    <Build Include="Random Functions\RandomMoneyColumn.sql" />
-    <Build Include="Random Functions\RandomNumberColumn.sql" />
-    <Build Include="String Functions\CountDelimetersInCSV.sql" />
-    <Build Include="String Functions\CSVElementAt.sql" />
-    <Build Include="String Functions\CSVToList.sql" />
-    <Build Include="Core Functions\VirtualSequence.sql" />
-    <Build Include="Core Functions\VirtualNums.sql" />
-    <Build Include="Core Functions\IntConst.sql" />
-    <Build Include="Tables\GenerationMethods.sql" />
-    <Build Include="Dynamic SQL Functions\BaseObject.sql" />
-    <Build Include="Procedures\GenerateView.sql" />
-    <Build Include="Table Types\GeneratedColumn.sql" />
-    <Build Include="Procedures\DropView.sql" />
-    <Build Include="Procedures\CreateView.sql" />
-    <Build Include="Views\Punctuation.sql" />
-    <Build Include="String Functions\QUOTENAME2.sql" />
-    <Build Include="Random Functions\RandomNormalDistFloatColumn.sql" />
-    <Build Include="Random Functions\RandomIntColumn.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="Post Deploy\Script.PostDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="SQLDataGenerator.refactorlog" />
+    <Build Include="Dynamic Functions\CrossApplyRandomElementFromCSVFromJson.sql" />
+    <Build Include="Dynamic Functions\CrossApplyRandomIntFromJson.sql" />
+    <Build Include="Dynamic Functions\CrossApplyRandomInt.sql" />
+    <Build Include="Dynamic Functions\CrossApplyRandomElementFromCSV.sql" />
+    <Build Include="Dynamic Functions\CrossApplyMapper.sql" />
   </ItemGroup>
 </Project>
